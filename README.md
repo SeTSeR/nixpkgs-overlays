@@ -1,2 +1,2 @@
 # nixpkgs-overlays
-My overlay for NixOS
+My overlay for NixOS. Contains packages for acpilight and my vim config.
