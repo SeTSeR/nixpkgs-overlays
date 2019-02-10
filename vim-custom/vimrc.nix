@@ -44,6 +44,8 @@
     set spelllang=ru,en
     au BufRead *.md setlocal spell
 
+    autocmd FileType nix setlocal shiftwidth=2 tabstop=2 expandtab
+
     function! Run()
         if !empty(glob("~/.vim/Makefile"))
             !cp ~/.vim/io.inc "%:p:h"
