@@ -4,4 +4,5 @@ self: super:
   vim-custom = self.pkgs.callPackage ./vim-custom {
     vim_configurable = super.pkgs.vim_configurable.override { python = self.python3; };
   };
+  vk-messenger = self.pkgs.callPackage ./vk-messenger {};
 }
