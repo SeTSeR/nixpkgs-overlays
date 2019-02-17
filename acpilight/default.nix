@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, python36, udev }:
+{ stdenv, fetchgit, python36, udev, coreutils }:
 stdenv.mkDerivation rec {
   name = "acpilight";
 
@@ -13,8 +13,8 @@ stdenv.mkDerivation rec {
   ]);
 
   postConfigure = ''
-    substituteInPlace Makefile \
-      --replace /usr /
+    substituteInPlace Makefile --replace /usr /
+    substituteInPlace 90-backlight.rules --replace /bin/ ${coreutils}/bin/
   '';
 
   buildInputs = [ pyenv udev ];
