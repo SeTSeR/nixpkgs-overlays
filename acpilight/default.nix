@@ -1,11 +1,12 @@
-{ stdenv, fetchgit, python36, udev, coreutils }:
+{ stdenv, fetchFromGitHub, python36, udev, coreutils }:
 stdenv.mkDerivation rec {
   name = "acpilight";
 
-  src = fetchgit {
-    url = "https://gitlab.com/wavexx/acpilight.git";
-    rev = "f54865ed9a11eedaeffa71af320a3bf36c89f15d";
-    sha256 = "1b7rx5bf010rxqkxyjcrplxwr32i066lxpqk729x1vhx0y3n0iv4";
+  src = fetchFromGitHub {
+    owner = "SeTSeR";
+    repo = "acpilight";
+    rev = "ecf103e57293df0af07fc1ee93bba94572600c1f";
+    sha256 = "0mvrf8kn8mgppawv6dx7jvljp7khnq3q7smmwkjpha35gdvq1m5w";
   };
 
   pyenv = python36.withPackages (pythonPackages: with pythonPackages; [
@@ -13,16 +14,15 @@ stdenv.mkDerivation rec {
   ]);
 
   postConfigure = ''
-    substituteInPlace Makefile --replace /usr /
     substituteInPlace 90-backlight.rules --replace /bin/ ${coreutils}/bin/
   '';
 
   buildInputs = [ pyenv udev ];
 
-  makeFlags = [ "DESTDIR=$(out)" ];
+  makeFlags = [ "DESTDIR=$(out) prefix=/" ];
 
   meta = {
-    homepage = "https://gitlab.com/wavexx/acpilight";
+    homepage = "https://github.com/SeTSeR/acpilight";
     description = "ACPI backlight control";
     license = stdenv.lib.licenses.gpl3;
   };
