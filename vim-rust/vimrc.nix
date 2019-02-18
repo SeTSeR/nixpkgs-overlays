@@ -41,25 +41,15 @@
     set background=light
     colorscheme solarized
 
-    set spelllang=ru,en
-    au BufRead *.md setlocal spell
-
-    autocmd FileType nix setlocal shiftwidth=2 tabstop=2 expandtab
-
     function! Run()
-        if !empty(glob("~/.vim/Makefile"))
-            !cp ~/.vim/io.inc "%:p:h"
-            make! "%:r"
-            !rm io.inc
-            !./%<
-        elseif expand("%:e")=="cpp" || expand("%:e")=="cxx"
-            !g++ -std=c++11 -I. -Wall -Wextra % -o %< && ./%<
+        if expand("%:e")=="cpp" || expand("%:e")=="cxx"
+            !g++ -std=c++17 -I. -Wall -Wextra % -o %< && ./%<
         elseif expand("%:e")=="c"
-            !gcc -std=c99 -Wall -Wformat-security -Winit-self -Wno-pointer-sign -Wignored-qualifiers -Wfloat-equal -Wnested-externs -Wmissing-field-initializers -Wmissing-parameter-type -Wold-style-definition -Wold-style-declaration -Wstrict-prototypes -Wtype-limits -Wswitch-default -lm -O2 % -o ./%< && ./%<
-        elseif expand("%:e")=="asm"
-            !~/.vim/build_asm.sh % && ./%<
+            !gcc -std=gnu99 -Wall -Wformat-security -Winit-self -Wno-pointer-sign -Wignored-qualifiers -Wfloat-equal -Wnested-externs -Wmissing-field-initializers -Wmissing-parameter-type -Wold-style-definition -Wold-style-declaration -Wstrict-prototypes -Wtype-limits -Wswitch-default -lm -O2 % -o ./%< && ./%<
         elseif expand("%:e")=="hs"
             !ghc % && ./%<
+        elseif expand("%:e")=="rs"
+            !cargo run
         endif
     endfunction
 
@@ -76,8 +66,6 @@
         au BufWritePost * if &bin | %!xxd
         au BufWritePost * set nomod | endif
     augroup END
-
-    let g:ycm_confirm_extra_conf = 0
 
     set foldmethod=syntax
   '';
