@@ -2,7 +2,7 @@
 let
   vimrc = import ./vimrc.nix {};
 in vim_configurable.customize {
-  name = "vim-custom";
+  name = "vim-rust";
   vimrcConfig = {
     customRC = vimrc.config;
     packages.myVimPackage = with vimPlugins; {
