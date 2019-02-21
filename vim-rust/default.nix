@@ -6,7 +6,7 @@ in vim_configurable.customize {
   vimrcConfig = {
     customRC = vimrc.config;
     packages.myVimPackage = with vimPlugins; {
-      start = [ auto-pairs rust-vim vim-airline vim-airline-themes vim-wakatime ];
+      start = [ auto-pairs rust-vim vim-airline vim-airline-themes vim-wakatime syntastic ];
       opt = [ vim-colors-solarized ];
     };
   };
