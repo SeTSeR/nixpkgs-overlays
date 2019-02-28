@@ -41,6 +41,13 @@
     set background=light
     colorscheme solarized
 
+    let g:netrw_browse_split = 4
+    let g:netrw_winsize = 25
+    augroup ProjectDrawer
+      au!
+      au VimEnter * :Vexplore
+    augroup END
+
     function! Run()
         if expand("%:e")=="cpp" || expand("%:e")=="cxx"
             !g++ -std=c++17 -I. -Wall -Wextra % -o %< && ./%<
