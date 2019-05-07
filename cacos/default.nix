@@ -9,8 +9,8 @@ in stdenv.mkDerivation rec {
 
   src = fetchgit {
     url = "https://github.com/BigRedEye/cacos";
-    rev = "cfc283b0f9a98b723a7d89ffe694732d4675fe1f";
-    sha256 = "0z3g4nybv0wi9vkvq3hai3pf5war8c5dj4f25b3sn7jv8d214883";
+    rev = "v0.1.4";
+    sha256 = "1b6bph086qlaz5l0zslakniyzx4cwg1532vmza2fci4x64l54mkw";
     fetchSubmodules = true;
   };
 
